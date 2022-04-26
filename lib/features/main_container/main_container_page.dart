@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import '../activity_page/activity_page.dart';
 import '../actuality_page/actuality_page.dart';
 import '../health_page/health_page.dart';
-import '../statistics/statistics_page.dart';
+import '../stat/statistics_page.dart';
 
 class MainContainer extends StatefulWidget {
   const MainContainer({Key? key}) : super(key: key);
@@ -29,8 +29,8 @@ class _MainContainerState extends State<MainContainer> {
     ActualityPage(),
     IllnessPage(),
     HeathPage(),
-    StatisticsPage(),
     ResidencePage(),
+    StatisticsPage(),
   ];
 
   void _onItemTapped(int index) {

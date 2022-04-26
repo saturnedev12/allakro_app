@@ -1,11 +1,11 @@
 import 'package:allakroapp/app/app.dart';
-import 'package:allakroapp/features/admin/bloc/admin_cubit.dart';
-import 'package:allakroapp/features/admin/bloc/states/admin_state.dart';
-import 'package:allakroapp/features/admin/pages/admin_activity.dart';
 import 'package:allakroapp/features/main_container/main_container_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'bloc/admin_cubit.dart';
+import 'bloc/states/admin_state.dart';
 
 class AdminPage extends StatefulWidget {
   const AdminPage({Key? key}) : super(key: key);

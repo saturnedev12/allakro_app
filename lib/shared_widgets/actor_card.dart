@@ -90,7 +90,7 @@ class ActorCard extends StatelessWidget {
                           Icons.mail_rounded,
                           size: 20,
                         ),
-                        Text('couturier'),
+                        Text('texte.teste@gmail.com'),
                       ],
                     ),
                     Row(

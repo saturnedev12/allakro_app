@@ -14,7 +14,9 @@ class _StatisticsPageState extends State<StatisticsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: const Text('statistiques du village'),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [

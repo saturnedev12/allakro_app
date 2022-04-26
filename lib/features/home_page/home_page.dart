@@ -1,9 +1,9 @@
-import 'package:allakroapp/features/admin/admin_page.dart';
+import 'package:allakroapp/gen/assets.gen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 
-import '../../gen/assets.gen.dart';
+import '../admin/admin_page.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
@@ -89,8 +89,11 @@ class HomePage extends StatelessWidget {
                     /// The widgets to display in the [ImageSlideshow].
                     /// Add the sample image file into the images folder
                     children: [
-                      for (var i = 1; i <= 6; i++)
-                        Image.asset('assets/images/banner$i.jpeg')
+                      for (var i = 1; i < 6; i++)
+                        Image.asset(
+                          'assets/images/banner$i.jpeg',
+                          fit: BoxFit.cover,
+                        )
                     ],
 
                     /// Called whenever the page in the center of the viewport changes.

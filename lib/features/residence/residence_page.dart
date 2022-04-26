@@ -121,6 +121,24 @@ class _ResidencePageState extends State<ResidencePage> {
                             ))
                           ],
                         ),
+                        Row(
+                          children: [
+                            Icon(CupertinoIcons.phone),
+                            RichText(
+                                text: TextSpan(
+                              style: TextStyle(color: Colors.black),
+                              children: <TextSpan>[
+                                TextSpan(
+                                  text: 'Contact: ',
+                                ),
+                                TextSpan(
+                                  text: '01 34 67 77 00',
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ))
+                          ],
+                        ),
                         Text(
                           '''Une maison est, en droit civil français, un immeuble, mot qui désigne aussi couramment un édifice de plusieurs étages divisé en plusieurs appartements occupés ...''',
                         )
