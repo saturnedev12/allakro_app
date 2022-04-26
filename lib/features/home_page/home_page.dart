@@ -89,30 +89,8 @@ class HomePage extends StatelessWidget {
                     /// The widgets to display in the [ImageSlideshow].
                     /// Add the sample image file into the images folder
                     children: [
-                      Image.network(
-                        'https://media.istockphoto.com/photos/traditional-konso-tribe-village-ethiopia-picture-id619526528?k=20&m=619526528&s=612x612&w=0&h=5HxhIJm8_g2Tan5UNRlCouKJ0szxp-PZ-FEWlkcZU1M=',
-                        fit: BoxFit.cover,
-                      ),
-                      Image.network(
-                        'https://manationtogo.com/wp-content/uploads/2020/01/thumb_175_attraction_big-6.jpeg',
-                        fit: BoxFit.cover,
-                      ),
-                      Image.network(
-                        'https://www.togofirst.com/media/k2/items/cache/98a582b66f9604c5e197e648c3b2d22e_L.jpg',
-                        fit: BoxFit.cover,
-                      ),
-                      Image.network(
-                        'https://togotribune.com/wp-content/uploads/2018/05/artisan.jpg',
-                        fit: BoxFit.cover,
-                      ),
-                      Image.network(
-                        'https://villagesamaane.net/wp-content/uploads/l-association-samaane-senegal-agit-pour-l-avenir-des-enfants-1.jpg',
-                        fit: BoxFit.cover,
-                      ),
-                      Image.network(
-                        'https://cdn-s-www.vosgesmatin.fr/images/2A3B1B93-7FAE-440C-87EC-6E05BAFF1C22/NW_raw/l-association-sourires-et-couleurs-d-afrique-envoie-des-containers-de-75-m3-chaque-annee-en-direction-de-niomar-au-senegal-en-partenariat-avec-deux-autres-associations-les-amis-de-gandiol-(metz)-et-enfants-du-senegal-(contrexeville)-compte-tenu-de-l-augmentation-des-frais-de-transport-des-containers-sourires-et-couleurs-d-afrique-envisage-plutot-une-aide-financiere-a-l-avenir-1634806292.jpgg',
-                        fit: BoxFit.cover,
-                      ),
+                      for (var i = 1; i <= 6; i++)
+                        Image.asset('assets/images/banner$i.jpeg')
                     ],
 
                     /// Called whenever the page in the center of the viewport changes.
@@ -162,6 +140,9 @@ class HomePage extends StatelessWidget {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
+                              SizedBox(
+                                height: 10,
+                              ),
                               CircleAvatar(
                                 radius: 40,
                                 backgroundColor:

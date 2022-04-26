@@ -93,19 +93,19 @@ class _MainContainerState extends State<MainContainer> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              CupertinoIcons.chart_bar_square,
-              color: (_selectedIndex == 6) ? Colors.green : Colors.black,
-              size: 30,
-            ),
-            label: 'Statistics',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
               CupertinoIcons.house_fill,
-              color: (_selectedIndex == 7) ? Colors.green : Colors.black,
+              color: (_selectedIndex == 6) ? Colors.green : Colors.black,
               size: 28,
             ),
             label: 'domicile',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              CupertinoIcons.chart_bar_square,
+              color: (_selectedIndex == 7) ? Colors.green : Colors.black,
+              size: 30,
+            ),
+            label: 'Statistics',
           ),
         ],
         currentIndex: _selectedIndex,
