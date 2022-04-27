@@ -1,3 +1,12 @@
+import 'package:allakroapp/features/stat/widgets/circular_born_chart.dart';
+import 'package:allakroapp/features/stat/widgets/circular_gender_chart.dart';
+import 'package:allakroapp/features/stat/widgets/level_school.dart';
+import 'package:allakroapp/features/stat/widgets/matrimonial_chart.dart';
+import 'package:allakroapp/features/stat/widgets/mobile_network_chart.dart';
+import 'package:allakroapp/features/stat/widgets/natioannality_chart.dart';
+import 'package:allakroapp/features/stat/widgets/reading_chart.dart';
+import 'package:allakroapp/features/stat/widgets/tranche_age_chart.dart';
+import 'package:allakroapp/features/stat/widgets/using_network.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:syncfusion_flutter_charts/sparkcharts.dart';
@@ -20,7 +29,7 @@ class _StatisticsPageState extends State<StatisticsPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
+            /*Container(
               height: 300,
               child: SfCartesianChart(
                   // Initialize category axis
@@ -39,44 +48,17 @@ class _StatisticsPageState extends State<StatisticsPage> {
                         yValueMapper: (SalesData sales, _) => sales.sales)
                   ]),
             ),
-            Container(
-              child: SfCircularChart(
-                title: ChartTitle(
-                    text: 'Half yearly sales analysis',
-                    backgroundColor: Colors.white,
-                    borderColor: Colors.black,
-                    borderWidth: 0.5,
+          */
 
-                    // Aligns the chart title to left
-                    alignment: ChartAlignment.near,
-                    textStyle: TextStyle(
-                      color: Colors.black,
-                      fontFamily: 'Roboto',
-                      fontStyle: FontStyle.italic,
-                      fontSize: 14,
-                    )),
-                legend: Legend(isVisible: true),
-                tooltipBehavior: TooltipBehavior(
-                  enable: true,
-                ),
-                // Initialize category axis
-                series: <CircularSeries>[
-                  // Render pie chart
-                  PieSeries<ChartData, String>(
-                      dataSource: [
-                        ChartData('David', 25),
-                        ChartData('Steve', 38),
-                        ChartData('Jack', 34),
-                        ChartData('Others', 52)
-                      ],
-                      enableTooltip: true,
-                      dataLabelMapper: (ChartData data, _) => data.x,
-                      xValueMapper: (ChartData data, _) => data.x,
-                      yValueMapper: (ChartData data, _) => data.y,
-                      dataLabelSettings: DataLabelSettings(isVisible: true))
-                ],
-              ),
-            ),
+            CircularGenderChart(),
+            CircularBornChart(),
+            NationnalityChart(),
+            MatrimonialeChart(),
+            MobileNetWortChart(),
+            UsingNetWortChart(),
+            ReadingChart(),
+            LevelSchoolChart(),
+            TrancheAgeChart(),
           ],
         ),
       ),
