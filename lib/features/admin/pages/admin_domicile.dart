@@ -1,25 +1,26 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../forms/admin_activity_form.dart';
+import '../forms/admin_domicile_form.dart';
+import '../forms/admin_health_center_form.dart';
 
-class AdminActivity extends StatefulWidget {
-  const AdminActivity({Key? key}) : super(key: key);
+class AdminDomicilePage extends StatefulWidget {
+  const AdminDomicilePage({Key? key}) : super(key: key);
 
   @override
-  State<AdminActivity> createState() => _AdminActivityState();
+  State<AdminDomicilePage> createState() => _AdminDomicilePageState();
 }
 
-class _AdminActivityState extends State<AdminActivity> {
+class _AdminDomicilePageState extends State<AdminDomicilePage> {
   @override
   Widget build(BuildContext context) {
     return ListView(
       children: ListTile.divideTiles(
         tiles: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: const Text(
-              "Administration des activités",
+          const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Text(
+              "Administration des Domiciles",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
@@ -31,10 +32,10 @@ class _AdminActivityState extends State<AdminActivity> {
                 onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => AdminActivityForm(),
+                      builder: (context) => AdminDomicileForm(),
                     )),
                 minVerticalPadding: 30,
-                title: Text('Artisan de bois'),
+                title: Text('Maison 3 piece'),
                 trailing: CupertinoButton(
                     child: Icon(
                       CupertinoIcons.delete,

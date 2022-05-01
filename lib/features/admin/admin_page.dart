@@ -47,16 +47,28 @@ class _AdminPageState extends State<AdminPage> {
                     ),
                     drawer: Drawer(
                       child: ListView.separated(
-                        itemCount: 6,
+                        itemCount: 7,
                         separatorBuilder: (context, index) => Divider(
                           color: Colors.black,
                         ),
                         itemBuilder: (context, index) => (index == 0)
                             ? DrawerHeader(
                                 decoration: BoxDecoration(
+
                                     //color: Colors.blue,
                                     ),
-                                child: Text('Drawer Header'),
+                                child: Column(
+                                  children: [
+                                    CircleAvatar(
+                                      radius: 50,
+                                      child: Icon(
+                                        CupertinoIcons.person_alt_circle,
+                                        size: 99,
+                                      ),
+                                    ),
+                                    Text('Administrateur Koffi Jean')
+                                  ],
+                                ),
                               )
                             : ListTile(
                                 selected: state.pageNumber == index,

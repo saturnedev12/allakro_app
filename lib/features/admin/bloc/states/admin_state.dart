@@ -6,6 +6,7 @@ import 'package:allakroapp/features/admin/pages/admin_health_center_page.dart';
 import 'package:flutter/widgets.dart';
 
 import '../../../activity_page/activity_page.dart';
+import '../../pages/admin_domicile.dart';
 
 abstract class AdminState {}
 
@@ -18,6 +19,7 @@ class PaginationAdminStte extends AdminState {
     'Actualité',
     'Maladies',
     'Centre de santé',
+    'Domicile'
   ];
   Map<String, Widget> pages = {
     'toto': Container(),
@@ -26,6 +28,7 @@ class PaginationAdminStte extends AdminState {
     'Actualité': AdminActualityPage(),
     'Maladies': AdminDiseasesPage(),
     'Centre de santé': AdminHealthCenterPage(),
+    'Domicile': AdminDomicilePage(),
   };
   Widget tagetPage;
   PaginationAdminStte({required this.pageNumber, required this.tagetPage});

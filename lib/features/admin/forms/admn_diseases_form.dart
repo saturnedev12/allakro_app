@@ -1,19 +1,22 @@
+import 'package:allakroapp/shared_widgets/custom_date_picker.dart';
 import 'package:flutter/material.dart';
 
-class AdminActualityForm extends StatefulWidget {
-  const AdminActualityForm({Key? key}) : super(key: key);
+class AdminDiseasesForm extends StatefulWidget {
+  const AdminDiseasesForm({Key? key}) : super(key: key);
 
   @override
-  State<AdminActualityForm> createState() => _AdminActualityFormState();
+  State<AdminDiseasesForm> createState() => _AdminDiseasesFormState();
 }
 
-class _AdminActualityFormState extends State<AdminActualityForm> {
+class _AdminDiseasesFormState extends State<AdminDiseasesForm> {
   GlobalKey _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text('Maladie'),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: EdgeInsets.only(left: 8, right: 8, top: 10),
@@ -27,7 +30,7 @@ class _AdminActualityFormState extends State<AdminActualityForm> {
                   keyboardType: TextInputType.text,
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
-                    hintText: "Titre de l'actualité",
+                    hintText: "Nom de la maladie",
                     filled: true,
                     fillColor: Theme.of(context).colorScheme.onBackground,
                   ),
@@ -40,7 +43,7 @@ class _AdminActualityFormState extends State<AdminActualityForm> {
                   keyboardType: TextInputType.text,
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
-                    hintText: "Nom du publicateur",
+                    hintText: "Statut de la maladie",
                     filled: true,
                     fillColor: Theme.of(context).colorScheme.onBackground,
                   ),
@@ -62,15 +65,47 @@ class _AdminActualityFormState extends State<AdminActualityForm> {
                   height: 30,
                 ),
                 TextFormField(
-                  maxLines: 50,
-                  minLines: 10,
+                  cursorColor: Colors.black,
+                  keyboardType: TextInputType.number,
+                  textInputAction: TextInputAction.next,
+                  decoration: InputDecoration(
+                    hintText: "Nombre de personnes affectés",
+                    filled: true,
+                    fillColor: Theme.of(context).colorScheme.onBackground,
+                  ),
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                TextFormField(
+                  cursorColor: Colors.black,
+                  keyboardType: TextInputType.number,
+                  textInputAction: TextInputAction.next,
+                  decoration: InputDecoration(
+                    hintText: "Nombre de personnes guérie",
+                    filled: true,
+                    fillColor: Theme.of(context).colorScheme.onBackground,
+                  ),
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                CustomDatePicker(
+                  labelle: "date d'apparition",
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                TextFormField(
+                  maxLines: 10,
+                  minLines: 8,
                   cursorColor: Colors.black,
                   keyboardType: TextInputType.multiline,
                   textInputAction: TextInputAction.newline,
                   decoration: InputDecoration(
                     fillColor: Theme.of(context).colorScheme.onBackground,
                     iconColor: Colors.black,
-                    hintText: "Text de l'actualité",
+                    hintText: "description de la maladie",
                     filled: true,
                   ),
                 ),
@@ -80,7 +115,8 @@ class _AdminActualityFormState extends State<AdminActualityForm> {
         ),
       ),
       bottomNavigationBar: Container(
-        padding: EdgeInsets.all(10),
+        height: 100,
+        padding: EdgeInsets.all(25),
         color: Theme.of(context).colorScheme.onBackground,
         child: ElevatedButton(
           child: SizedBox(

@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 
-class AdminDiseasesForm extends StatefulWidget {
-  const AdminDiseasesForm({Key? key}) : super(key: key);
+class AdminActualityForm extends StatefulWidget {
+  const AdminActualityForm({Key? key}) : super(key: key);
 
   @override
-  State<AdminDiseasesForm> createState() => _AdminDiseasesFormState();
+  State<AdminActualityForm> createState() => _AdminActualityFormState();
 }
 
-class _AdminDiseasesFormState extends State<AdminDiseasesForm> {
+class _AdminActualityFormState extends State<AdminActualityForm> {
   GlobalKey _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text('Actualité'),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: EdgeInsets.only(left: 8, right: 8, top: 10),
@@ -27,7 +29,7 @@ class _AdminDiseasesFormState extends State<AdminDiseasesForm> {
                   keyboardType: TextInputType.text,
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
-                    hintText: "Nom de la maladie",
+                    hintText: "Titre de l'actualité",
                     filled: true,
                     fillColor: Theme.of(context).colorScheme.onBackground,
                   ),
@@ -40,7 +42,7 @@ class _AdminDiseasesFormState extends State<AdminDiseasesForm> {
                   keyboardType: TextInputType.text,
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
-                    hintText: "Statut de la maladie",
+                    hintText: "Nom du publicateur",
                     filled: true,
                     fillColor: Theme.of(context).colorScheme.onBackground,
                   ),
@@ -62,54 +64,15 @@ class _AdminDiseasesFormState extends State<AdminDiseasesForm> {
                   height: 30,
                 ),
                 TextFormField(
-                  cursorColor: Colors.black,
-                  keyboardType: TextInputType.number,
-                  textInputAction: TextInputAction.next,
-                  decoration: InputDecoration(
-                    hintText: "Nombre de personnes affectés",
-                    filled: true,
-                    fillColor: Theme.of(context).colorScheme.onBackground,
-                  ),
-                ),
-                SizedBox(
-                  height: 30,
-                ),
-                TextFormField(
-                  cursorColor: Colors.black,
-                  keyboardType: TextInputType.number,
-                  textInputAction: TextInputAction.next,
-                  decoration: InputDecoration(
-                    hintText: "Nombre de personnes guérie",
-                    filled: true,
-                    fillColor: Theme.of(context).colorScheme.onBackground,
-                  ),
-                ),
-                SizedBox(
-                  height: 30,
-                ),
-                TextFormField(
-                  cursorColor: Colors.black,
-                  keyboardType: TextInputType.datetime,
-                  textInputAction: TextInputAction.next,
-                  decoration: InputDecoration(
-                    hintText: "Date apparition",
-                    filled: true,
-                    fillColor: Theme.of(context).colorScheme.onBackground,
-                  ),
-                ),
-                SizedBox(
-                  height: 30,
-                ),
-                TextFormField(
-                  maxLines: 10,
-                  minLines: 8,
+                  maxLines: 50,
+                  minLines: 10,
                   cursorColor: Colors.black,
                   keyboardType: TextInputType.multiline,
                   textInputAction: TextInputAction.newline,
                   decoration: InputDecoration(
                     fillColor: Theme.of(context).colorScheme.onBackground,
                     iconColor: Colors.black,
-                    hintText: "description de la maladie",
+                    hintText: "Text de l'actualité",
                     filled: true,
                   ),
                 ),
@@ -119,7 +82,8 @@ class _AdminDiseasesFormState extends State<AdminDiseasesForm> {
         ),
       ),
       bottomNavigationBar: Container(
-        padding: EdgeInsets.all(10),
+        height: 100,
+        padding: EdgeInsets.all(25),
         color: Theme.of(context).colorScheme.onBackground,
         child: ElevatedButton(
           child: SizedBox(

@@ -13,7 +13,9 @@ class _AdminHealthCenterFormState extends State<AdminHealthCenterForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text('Centre de santé'),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: EdgeInsets.only(left: 8, right: 8, top: 10),
@@ -106,7 +108,8 @@ class _AdminHealthCenterFormState extends State<AdminHealthCenterForm> {
         ),
       ),
       bottomNavigationBar: Container(
-        padding: EdgeInsets.all(10),
+        height: 100,
+        padding: EdgeInsets.all(25),
         color: Theme.of(context).colorScheme.onBackground,
         child: ElevatedButton(
           child: SizedBox(

@@ -43,6 +43,7 @@ dependencies:
   flutter_image_slideshow: ^0.1.2
   search_page: ^2.0.0+1
   syncfusion_flutter_charts: ^20.1.50
+  flutter_datetime_picker: ^1.5.1
 
 
 dev_dependencies:

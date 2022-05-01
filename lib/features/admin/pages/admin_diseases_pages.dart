@@ -1,8 +1,6 @@
-import 'package:allakroapp/features/admin/bloc/forms/admin_activity_form.dart';
+import 'package:allakroapp/features/admin/forms/admn_diseases_form.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import '../bloc/forms/admn_diseases_form.dart';
 
 class AdminDiseasesPage extends StatefulWidget {
   const AdminDiseasesPage({Key? key}) : super(key: key);
