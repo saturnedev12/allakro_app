@@ -1,9 +1,11 @@
+import 'package:allakroapp/models/actuality_model.dart';
 import 'package:allakroapp/providers/activity_provider.dart';
 import 'package:allakroapp/providers/actors_provider.dart';
 import 'package:allakroapp/providers/actuality_provider.dart';
 import 'package:allakroapp/providers/disease_provider.dart';
 import 'package:allakroapp/providers/domiciles_provider.dart';
 import 'package:allakroapp/providers/heatth_center_provider.dart';
+import 'package:allakroapp/repository/actuality_repository.dart';
 import 'package:test/test.dart';
 
 void main(List<String> args) async {
@@ -15,6 +17,9 @@ void main(List<String> args) async {
     _data = await ActualityProvider().fetchAll();
     //print(data);
     expect(_data['status'], 'OK');
+    //var res = await ActualityRepository().getAllActuality();
+    //expect(res is List<ActualityModel>, true);
+
     print('fetch one');
     _data = await ActualityProvider().fetchOne(id: 2);
     expect(_data['status'], 'OK');

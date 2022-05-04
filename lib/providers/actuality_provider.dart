@@ -6,6 +6,7 @@ import 'package:convert/convert.dart';
 class ActualityProvider extends DataProvider {
   Future<Map<String, dynamic>> fetchAll() async {
     String response = await getting(url: '/actuality/list');
+    //print(response);
     return jsonDecode(response);
   }
 
