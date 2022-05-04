@@ -16,16 +16,23 @@ class _AdminActualityPageState extends State<AdminActualityPage> {
     return ListView(
       children: ListTile.divideTiles(
         tiles: [
-          Padding(
+                Padding(
             padding: const EdgeInsets.all(8.0),
-            child: const Text(
-              "Administration des Actualités",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-              ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  "Administration des Actualités",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                  ),
+                ),
+                IconButton(onPressed: () {}, icon: Icon(CupertinoIcons.add))
+              ],
             ),
           ),
+  
           for (var i = 0; i < 10; i++)
             ListTile(
                 onTap: () => Navigator.push(

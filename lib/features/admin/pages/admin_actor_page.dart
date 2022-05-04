@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../forms/admin_activity_form.dart';
+import '../forms/admin_actor_form.dart';
 
 class AdminActorsPage extends StatefulWidget {
   const AdminActorsPage({Key? key}) : super(key: key);
@@ -18,12 +19,18 @@ class _AdminActorsPageState extends State<AdminActorsPage> {
         tiles: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: const Text(
-              "Administration des Acteurs",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-              ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  "Administration des Acteurs",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                  ),
+                ),
+                IconButton(onPressed: () {}, icon: Icon(CupertinoIcons.add))
+              ],
             ),
           ),
           for (var i = 0; i < 10; i++)
@@ -31,7 +38,7 @@ class _AdminActorsPageState extends State<AdminActorsPage> {
                 onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => AdminActivityForm(),
+                      builder: (context) => AdminActorForm(),
                     )),
                 minVerticalPadding: 30,
                 title: Text('Jean koffi Seri'),

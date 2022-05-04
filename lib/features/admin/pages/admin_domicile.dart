@@ -17,14 +17,20 @@ class _AdminDomicilePageState extends State<AdminDomicilePage> {
     return ListView(
       children: ListTile.divideTiles(
         tiles: [
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Text(
-              "Administration des Domiciles",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-              ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  "Administration des Domiciles",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                  ),
+                ),
+                IconButton(onPressed: () {}, icon: Icon(CupertinoIcons.add))
+              ],
             ),
           ),
           for (var i = 0; i < 10; i++)

@@ -16,14 +16,20 @@ class _AdminHealthCenterPageState extends State<AdminHealthCenterPage> {
     return ListView(
       children: ListTile.divideTiles(
         tiles: [
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Text(
-              "Administration des Centres de santé",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-              ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  "Administration des Centres de Santé",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                  ),
+                ),
+                IconButton(onPressed: () {}, icon: Icon(CupertinoIcons.add))
+              ],
             ),
           ),
           for (var i = 0; i < 10; i++)

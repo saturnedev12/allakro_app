@@ -18,12 +18,18 @@ class _AdminActivityState extends State<AdminActivity> {
         tiles: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: const Text(
-              "Administration des activités",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-              ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  "Administration des Activités",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                  ),
+                ),
+                IconButton(onPressed: () {}, icon: Icon(CupertinoIcons.add))
+              ],
             ),
           ),
           for (var i = 0; i < 10; i++)
