@@ -1,15 +1,5 @@
-// To parse this JSON data, do
-//
-//     final welcome = welcomeFromJson(jsonString);
-
-import 'dart:convert';
-
-Welcome welcomeFromJson(String str) => Welcome.fromJson(json.decode(str));
-
-String welcomeToJson(Welcome data) => json.encode(data.toJson());
-
-class Welcome {
-  Welcome({
+class DomicileModel {
+  DomicileModel({
     this.id = 0,
     this.nameDomicile = '',
     this.nameOwner = '',
@@ -31,7 +21,7 @@ class Welcome {
   String address;
   String status;
 
-  factory Welcome.fromJson(Map<String, dynamic> json) => Welcome(
+  factory DomicileModel.fromJson(Map<String, dynamic> json) => DomicileModel(
         id: json["id"] ?? 0,
         nameDomicile: json["name_domicile"] ?? '',
         nameOwner: json["name_owner"] ?? '',
