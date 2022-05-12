@@ -9,8 +9,7 @@ import 'package:allakroapp/providers/actuality_provider.dart';
 import 'package:allakroapp/providers/disease_provider.dart';
 
 class DiseaseRepository {
-  Future<List<DiseaseModel>> getAllActuality(
-      {required int perPage, required int page}) async {
+  Future<List<DiseaseModel>> getAllDiseases() async {
     //print('totot');
     var data = await DiseasesProvider().fetchAll();
     //print('ACUTALITY PROVIDED $data');

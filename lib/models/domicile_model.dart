@@ -15,7 +15,7 @@ class DomicileModel {
   String nameDomicile;
   String nameOwner;
   DateTime? dateLayout;
-  dynamic dateMove;
+  DateTime? dateMove;
   String description;
   String contactOwner;
   String address;
@@ -28,7 +28,9 @@ class DomicileModel {
         dateLayout: json["date_layout"] == null
             ? null
             : DateTime.parse(json["date_layout"]),
-        dateMove: json["date_move"],
+        dateMove: json["date_move"] == null
+            ? null
+            : DateTime.parse(json["date_move"]),
         description: json["description"] ?? '',
         contactOwner: json["contact_owner"] ?? '',
         address: json["address"] ?? '',

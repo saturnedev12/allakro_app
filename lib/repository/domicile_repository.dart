@@ -9,8 +9,7 @@ import 'package:allakroapp/providers/actuality_provider.dart';
 import 'package:allakroapp/providers/domiciles_provider.dart';
 
 class DomicileRepository {
-  Future<List<DomicileModel>> getAllActuality(
-      {required int perPage, required int page}) async {
+  Future<List<DomicileModel>> getAllDomicile() async {
     //print('totot');
     var data = await DomicileProvider().fetchAll();
     //print('ACUTALITY PROVIDED $data');

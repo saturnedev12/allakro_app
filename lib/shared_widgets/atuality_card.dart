@@ -1,9 +1,23 @@
 import 'package:allakroapp/features/actuality_page/pages/read_page.dart';
+import 'package:allakroapp/shared_widgets/constantes.dart';
 import 'package:flutter/material.dart';
 
 class ActualityCard extends StatelessWidget {
-  const ActualityCard({Key? key}) : super(key: key);
-
+  ActualityCard({
+    Key? key,
+    required this.title,
+    required this.datePubli,
+    required this.publisher,
+    required this.type,
+    required this.vews,
+    required this.text,
+  }) : super(key: key);
+  String title;
+  String type;
+  String publisher;
+  int vews;
+  DateTime datePubli;
+  String text;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -11,7 +25,14 @@ class ActualityCard extends StatelessWidget {
         Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => ReadPage(),
+              builder: (context) => ReadPage(
+                title: title,
+                type: type,
+                publisher: publisher,
+                vews: vews,
+                datePubli: Constantes.dateFormat.format(datePubli),
+                text: text,
+              ),
             ));
       },
       child: Card(
@@ -52,28 +73,33 @@ class ActualityCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          '03/04/2022',
-                          style: TextStyle(
+                          Constantes.dateFormat.format(datePubli),
+                          style: const TextStyle(
+                            overflow: TextOverflow.ellipsis,
                             //fontWeight: FontWeight.bold,
                             fontSize: 15,
                           ),
                         ),
-                        Chip(
-                            padding: EdgeInsets.all(1),
-                            //labelPadding: EdgeInsets.all(1),
-                            backgroundColor: Colors.grey,
-                            label: Text(
-                              'opportunité',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 12,
-                              ),
-                            ))
+                        SizedBox(
+                          width: 100,
+                          child: Chip(
+                              padding: EdgeInsets.all(1),
+                              //labelPadding: EdgeInsets.all(1),
+                              backgroundColor: Colors.grey,
+                              label: Text(
+                                type,
+                                style: const TextStyle(
+                                  overflow: TextOverflow.ellipsis,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 12,
+                                ),
+                              )),
+                        )
                       ],
                     ),
                     Text(
-                      'LA MAIRIE RECHECHE UN AGENT D’ENTRETIENT',
+                      title,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 13,
@@ -82,7 +108,7 @@ class ActualityCard extends StatelessWidget {
                       overflow: TextOverflow.fade,
                     ),
                     Text(
-                      'Anonce de: la mairie',
+                      publisher,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
@@ -93,7 +119,8 @@ class ActualityCard extends StatelessWidget {
                           child: ListTile(
                             dense: true,
                             leading: Icon(Icons.remove_red_eye),
-                            trailing: Text('100 vues'),
+                            trailing:
+                                Text('${(vews >= 100) ? '+100' : vews} vues'),
                           ),
                         ),
                       ],

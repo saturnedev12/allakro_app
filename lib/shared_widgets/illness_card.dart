@@ -1,8 +1,19 @@
 import 'package:flutter/material.dart';
 
 class IllnessCard extends StatelessWidget {
-  const IllnessCard({Key? key}) : super(key: key);
-
+  IllnessCard({
+    Key? key,
+    required this.name,
+    required this.description,
+    required this.status,
+    required this.nbAffected,
+    required this.nbHealed,
+  }) : super(key: key);
+  String name;
+  String status;
+  String description;
+  int nbAffected;
+  int nbHealed;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -16,7 +27,7 @@ class IllnessCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Covid 19',
+                    name,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
@@ -25,7 +36,7 @@ class IllnessCard extends StatelessWidget {
                   Chip(
                     backgroundColor: Colors.redAccent,
                     label: Text(
-                      'en cours',
+                      status,
                       style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
@@ -39,7 +50,7 @@ class IllnessCard extends StatelessWidget {
                 height: 10,
               ),
               Text(
-                ('''Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.'''),
+                (description),
               ),
               SizedBox(
                 height: 10,
@@ -47,7 +58,7 @@ class IllnessCard extends StatelessWidget {
               Row(
                 children: [
                   Icon(Icons.people_rounded),
-                  Text('30 atteints 20 guéries'),
+                  Text('$nbAffected atteints $nbHealed guéries'),
                 ],
               ),
             ],

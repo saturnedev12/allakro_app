@@ -2,8 +2,21 @@ import 'package:allakroapp/app/app.dart';
 import 'package:flutter/material.dart';
 
 class ReadPage extends StatelessWidget {
-  const ReadPage({Key? key}) : super(key: key);
-
+  ReadPage({
+    Key? key,
+    required this.title,
+    required this.datePubli,
+    required this.publisher,
+    required this.type,
+    required this.vews,
+    required this.text,
+  }) : super(key: key);
+  String title;
+  String type;
+  String publisher;
+  int vews;
+  String datePubli;
+  String text;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +37,7 @@ class ReadPage extends StatelessWidget {
                         backgroundColor: Colors.blueGrey,
                         padding: EdgeInsets.all(0),
                         label: Text(
-                          'Opportunité',
+                          type,
                           style: TextStyle(fontSize: 10, color: Colors.white),
                         )),
                     SizedBox(
@@ -42,7 +55,7 @@ class ReadPage extends StatelessWidget {
                   height: 10,
                 ),
                 Text(
-                  'LA MAIRIE RECHECHE UN AGENT D’ENTRETIENT',
+                  title,
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -51,32 +64,16 @@ class ReadPage extends StatelessWidget {
                 SizedBox(
                   height: 5,
                 ),
-                Text('Publié le 03/10/2021'),
+                Text('Publié le $datePubli'),
                 SizedBox(
                   height: 10,
                 ),
-                Text('''
-Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.
-Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.
-Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.
-Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.
-Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.
-Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.
-
-Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.
-Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.
-
-Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.
-Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.
-
-Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.
-Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.
-'''),
+                Text(text),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Text(
-                      'Message de la mairie',
+                      publisher,
                       style: TextStyle(fontWeight: FontWeight.bold),
                     )
                   ],

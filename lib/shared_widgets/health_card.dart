@@ -5,8 +5,21 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class HealthCard extends StatelessWidget {
-  HealthCard({Key? key}) : super(key: key);
-
+  HealthCard({
+    Key? key,
+    required this.name,
+    required this.status,
+    required this.garde,
+    required this.description,
+    required this.latitude,
+    required this.longitude,
+  }) : super(key: key);
+  String name;
+  String status;
+  String garde;
+  String description;
+  String longitude;
+  String latitude;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -24,7 +37,7 @@ class HealthCard extends StatelessWidget {
                 SizedBox(
                   width: 200,
                   child: Text(
-                    'Pharmatie les perles',
+                    name,
                     overflow: TextOverflow.clip,
                     style: TextStyle(
                       color: Colors.black,
@@ -35,7 +48,7 @@ class HealthCard extends StatelessWidget {
                 ),
                 Chip(
                   label: Text(
-                    'ouvert',
+                    status,
                     style: TextStyle(
                       fontSize: 10,
                       fontWeight: FontWeight.bold,
@@ -49,7 +62,7 @@ class HealthCard extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: Text(
-                'De garde Lundi, Samedi, Dimanche',
+                garde,
                 overflow: TextOverflow.clip,
                 style: TextStyle(
                   color: Colors.black.withOpacity(0.5),
@@ -59,7 +72,7 @@ class HealthCard extends StatelessWidget {
               ),
             ),
             Text(
-              '''L’investissement immobilier consiste à acquérir un bien non pas dans le but de l’habiter, mais en guise de placement d’épargne pour en tirer un revenu. Pour cette raison, investir dans l’immobilier n’est pas un geste anodin : vous devez connaître suffisamment l’état du marché et les différentes possibilités d’investissement pour ne pas placer votre argent dans des options à risques. ''',
+              description,
               style: TextStyle(
                 fontSize: 13,
               ),
@@ -69,7 +82,10 @@ class HealthCard extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => HealthMap(),
+                        builder: (context) => HealthMap(
+                          latitude: latitude,
+                          longitude: longitude,
+                        ),
                       ));
                 },
                 style: ButtonStyle(

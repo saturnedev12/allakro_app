@@ -11,8 +11,7 @@ import 'package:allakroapp/providers/domiciles_provider.dart';
 import 'package:allakroapp/providers/heatth_center_provider.dart';
 
 class HeathCenterRepository {
-  Future<List<HealthCenterModel>> getAllActuality(
-      {required int perPage, required int page}) async {
+  Future<List<HealthCenterModel>> getHealthCenter() async {
     //print('totot');
     var data = await HealthCenterProvider().fetchAll();
     //print('ACUTALITY PROVIDED $data');
