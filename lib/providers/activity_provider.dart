@@ -1,10 +1,10 @@
 import 'dart:convert';
 
-import 'package:allakroapp/providers/data_provider.dart';
+import 'package:allakroapp/providers/base/data_provider.dart';
 import 'package:convert/convert.dart';
 
 class ActivityProvider extends DataProvider {
-  Future<Map<String, dynamic>> fetchAll() async {
+  Future<List<dynamic>> fetchAll() async {
     String response = await getting(url: '/activity/list');
     return jsonDecode(response);
   }

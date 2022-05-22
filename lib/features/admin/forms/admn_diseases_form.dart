@@ -1,5 +1,14 @@
+import 'dart:developer';
+
+import 'package:allakroapp/bloc/diseases_bloc.dart';
 import 'package:allakroapp/shared_widgets/custom_date_picker.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../bloc/states.dart';
+import '../../../models/response_model.dart';
+import '../../../providers/actuality_provider.dart';
 
 class AdminDiseasesForm extends StatefulWidget {
   const AdminDiseasesForm({Key? key}) : super(key: key);
@@ -9,13 +18,13 @@ class AdminDiseasesForm extends StatefulWidget {
 }
 
 class _AdminDiseasesFormState extends State<AdminDiseasesForm> {
-  GlobalKey _formKey = GlobalKey<FormState>();
-
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final Map<String, dynamic> _formData = {};
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Maladie'),
+        title: const Text('Maladie'),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -34,6 +43,13 @@ class _AdminDiseasesFormState extends State<AdminDiseasesForm> {
                     filled: true,
                     fillColor: Theme.of(context).colorScheme.onBackground,
                   ),
+                  validator: (val) {
+                    if (val == null || val.isEmpty) {
+                      return 'entrez une valeur';
+                    }
+                    _formData['name_disease'] = val;
+                    return null;
+                  },
                 ),
                 SizedBox(
                   height: 20,
@@ -47,22 +63,16 @@ class _AdminDiseasesFormState extends State<AdminDiseasesForm> {
                     filled: true,
                     fillColor: Theme.of(context).colorScheme.onBackground,
                   ),
+                  validator: (val) {
+                    if (val == null || val.isEmpty) {
+                      return 'entrez une valeur';
+                    }
+                    _formData['status'] = val;
+                    return null;
+                  },
                 ),
                 SizedBox(
                   height: 20,
-                ),
-                TextFormField(
-                  cursorColor: Colors.black,
-                  keyboardType: TextInputType.text,
-                  textInputAction: TextInputAction.next,
-                  decoration: InputDecoration(
-                    hintText: "type d'actualité",
-                    filled: true,
-                    fillColor: Theme.of(context).colorScheme.onBackground,
-                  ),
-                ),
-                SizedBox(
-                  height: 30,
                 ),
                 TextFormField(
                   cursorColor: Colors.black,
@@ -73,6 +83,13 @@ class _AdminDiseasesFormState extends State<AdminDiseasesForm> {
                     filled: true,
                     fillColor: Theme.of(context).colorScheme.onBackground,
                   ),
+                  validator: (val) {
+                    if (val == null || val.isEmpty) {
+                      return 'entrez une valeur';
+                    }
+                    _formData['number_affected'] = val;
+                    return null;
+                  },
                 ),
                 SizedBox(
                   height: 30,
@@ -86,12 +103,26 @@ class _AdminDiseasesFormState extends State<AdminDiseasesForm> {
                     filled: true,
                     fillColor: Theme.of(context).colorScheme.onBackground,
                   ),
+                  validator: (val) {
+                    if (val == null || val.isEmpty) {
+                      return 'entrez une valeur';
+                    }
+                    _formData['number_healed'] = val;
+                    return null;
+                  },
                 ),
                 SizedBox(
                   height: 30,
                 ),
                 CustomDatePicker(
                   labelle: "date d'apparition",
+                  validator: (val) {
+                    if (val == null || val.isEmpty) {
+                      return 'entrez une valeur';
+                    }
+                    _formData['date_appearance'] = val;
+                    return null;
+                  },
                 ),
                 SizedBox(
                   height: 30,
@@ -108,6 +139,13 @@ class _AdminDiseasesFormState extends State<AdminDiseasesForm> {
                     hintText: "description de la maladie",
                     filled: true,
                   ),
+                  validator: (val) {
+                    if (val == null || val.isEmpty) {
+                      return 'entrez une valeur';
+                    }
+                    _formData['description'] = val;
+                    return null;
+                  },
                 ),
               ],
             ),
@@ -127,7 +165,51 @@ class _AdminDiseasesFormState extends State<AdminDiseasesForm> {
               ),
             ),
           ),
-          onPressed: () {},
+          onPressed: () {
+            inspect(_formData);
+            if (_formKey.currentState!.validate()) {
+              context.read<DiseasesBloc>().create(body: _formData);
+
+              showDialog(
+                context: context,
+                barrierDismissible: false,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: const Text("Reponse"),
+                    content: SizedBox(
+                        height: 50,
+                        child: BlocBuilder<DiseasesBloc, StateApp>(
+                          builder: (context, state) {
+                            if (state is ReadyStateOne<ResponseModel>) {
+                              return Center(
+                                child: Text(state.data.message),
+                              );
+                            }
+                            return const Center(
+                              child: CupertinoActivityIndicator(),
+                            );
+                          },
+                        )),
+                    actions: [
+                      TextButton(
+                        child: const Text(
+                          "Fermer",
+                          style: TextStyle(color: Colors.red),
+                        ),
+                        onPressed: () {
+                          ActualityProvider().client.close();
+                          context.read<DiseasesBloc>().getActualities();
+                          int _count = 0;
+
+                          Navigator.popUntil(context, (route) => _count++ >= 2);
+                        },
+                      ),
+                    ],
+                  );
+                },
+              );
+            }
+          },
         ),
       ),
     );

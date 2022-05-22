@@ -3,6 +3,7 @@ import 'package:allakroapp/features/main_container/main_container_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../bloc/activity_bloc.dart';
 import '../bloc/actuality_bloc.dart';
 import '../bloc/diseases_bloc.dart';
 import '../bloc/domicile_bloc.dart';
@@ -23,6 +24,7 @@ class _AppState extends State<App> {
         BlocProvider(create: (_) => DiseasesBloc()),
         BlocProvider(create: (_) => HealthCenterBloc()),
         BlocProvider(create: (_) => DomicileBloc()),
+        BlocProvider(create: (_) => ActivityBloc()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

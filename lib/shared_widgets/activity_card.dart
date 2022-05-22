@@ -2,7 +2,13 @@ import 'package:allakroapp/features/actor_page/actor_page.dart';
 import 'package:flutter/material.dart';
 
 class ActivyCard extends StatelessWidget {
-  const ActivyCard({Key? key}) : super(key: key);
+  ActivyCard({
+    Key? key,
+    required this.name,
+    required this.members,
+  }) : super(key: key);
+  String name;
+  int members;
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +17,9 @@ class ActivyCard extends StatelessWidget {
         Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => ActorPage(),
+              builder: (context) => ActorPage(
+                activity: name,
+              ),
             ));
       },
       child: Card(
@@ -27,8 +35,8 @@ class ActivyCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Couture',
-                    style: TextStyle(
+                    name,
+                    style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
@@ -36,7 +44,7 @@ class ActivyCard extends StatelessWidget {
                   Row(
                     children: [
                       Icon(Icons.people_alt_rounded),
-                      Text('35 personnes pratique cette activité')
+                      Text('$members personnes pratique cette activité')
                     ],
                   ),
                 ],

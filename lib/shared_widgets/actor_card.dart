@@ -1,13 +1,26 @@
 import 'package:allakroapp/features/actor_page/pages/detail_actor.dart';
+import 'package:allakroapp/models/actor_model.dart';
 import 'package:flutter/material.dart';
 
 class ActorCard extends StatelessWidget {
-  ActorCard({Key? key}) : super(key: key);
-  TextStyle _titleTextStyle = TextStyle(
+  ActorCard({
+    Key? key,
+    required this.name,
+    required this.email,
+    required this.number,
+    required this.activity,
+    required this.actor,
+  }) : super(key: key);
+  String name;
+  String email;
+  String activity;
+  String number;
+  ActorModel actor;
+  final TextStyle _titleTextStyle = const TextStyle(
     fontSize: 20,
     fontWeight: FontWeight.bold,
   );
-  TextStyle subTitleStyle = TextStyle(
+  TextStyle subTitleStyle = const TextStyle(
     fontSize: 15,
   );
   @override
@@ -17,7 +30,9 @@ class ActorCard extends StatelessWidget {
         Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => DetailActor(),
+              builder: (context) => DetailActor(
+                actor: actor,
+              ),
             ));
       },
       child: Card(
@@ -31,10 +46,12 @@ class ActorCard extends StatelessWidget {
           ),
           child: Row(
             children: [
-              CircleAvatar(
+              const CircleAvatar(
+                backgroundColor: Colors.white,
                 child: Icon(
-                  Icons.person_rounded,
-                  size: 40,
+                  Icons.account_circle,
+                  color: Colors.green,
+                  size: 90,
                 ),
                 radius: 40,
               ),
@@ -49,9 +66,13 @@ class ActorCard extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          'Jane Cooper',
-                          style: _titleTextStyle,
+                        SizedBox(
+                          width: 170,
+                          child: Text(
+                            name,
+                            overflow: TextOverflow.ellipsis,
+                            style: _titleTextStyle,
+                          ),
                         ),
                         TextButton(
                             onPressed: () {},
@@ -79,7 +100,7 @@ class ActorCard extends StatelessWidget {
                           size: 20,
                         ),
                         Text(
-                          'couturier',
+                          activity,
                           style: subTitleStyle,
                         ),
                       ],
@@ -90,7 +111,7 @@ class ActorCard extends StatelessWidget {
                           Icons.mail_rounded,
                           size: 20,
                         ),
-                        Text('texte.teste@gmail.com'),
+                        Text(email),
                       ],
                     ),
                     Row(
@@ -99,7 +120,7 @@ class ActorCard extends StatelessWidget {
                           Icons.phone_rounded,
                           size: 20,
                         ),
-                        Text('01 33 44 66 88 77'),
+                        Text(number),
                       ],
                     ),
                   ],

@@ -25,17 +25,6 @@ void main(List<String> args) async {
     expect(_data['status'], 'OK');
   });
 
-  test('Fetch activity test', () async {
-    Map<String, dynamic> _data;
-    print('fetch all');
-    _data = await ActivityProvider().fetchAll();
-    //print(data);
-    expect(_data['status'], 'OK');
-    print('fetch one');
-    _data = await ActivityProvider().fetchOne(id: 2);
-    expect(_data['status'], 'OK');
-  });
-
   test('Fetch diseases test', () async {
     Map<String, dynamic> _data;
     print('fetch all');

@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
 class CustomDatePicker extends StatefulWidget {
-  const CustomDatePicker({Key? key, required this.labelle}) : super(key: key);
+  CustomDatePicker({Key? key, required this.labelle, this.validator})
+      : super(key: key);
   final String labelle;
+  String? Function(String?)? validator;
   @override
   _CustomDatePickerState createState() => _CustomDatePickerState();
 }
@@ -26,6 +28,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      validator: widget.validator,
       focusNode: AlwaysDisabledFocusNode(),
       controller: controller,
       onTap: () {

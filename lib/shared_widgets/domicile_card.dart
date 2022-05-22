@@ -25,9 +25,9 @@ class DomicileCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.only(top: 20),
+      margin: const EdgeInsets.only(top: 20),
       child: Container(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         width: double.infinity,
         height: 300,
         child: Column(
@@ -51,20 +51,20 @@ class DomicileCard extends StatelessWidget {
             ),
             Text(
               nameOwner,
-              style: TextStyle(
+              style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 22,
               ),
             ),
             Row(
               children: [
-                Icon(
+                const Icon(
                   CupertinoIcons.location,
                   color: Colors.grey,
                 ),
                 Text(
                   address,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Colors.grey,
                     fontSize: 12,
@@ -74,12 +74,12 @@ class DomicileCard extends StatelessWidget {
             ),
             Row(
               children: [
-                Icon(CupertinoIcons.person_crop_circle),
+                const Icon(CupertinoIcons.person_crop_circle),
                 RichText(
                     text: TextSpan(
                   style: TextStyle(color: Colors.black),
                   children: <TextSpan>[
-                    TextSpan(
+                    const TextSpan(
                       text: 'Propriétaire: ',
                     ),
                     TextSpan(

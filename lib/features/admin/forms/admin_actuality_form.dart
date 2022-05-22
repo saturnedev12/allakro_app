@@ -1,4 +1,13 @@
+import 'dart:developer';
+
+import 'package:allakroapp/bloc/states.dart';
+import 'package:allakroapp/models/response_model.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../bloc/actuality_bloc.dart';
+import '../../../providers/actuality_provider.dart';
 
 class AdminActualityForm extends StatefulWidget {
   const AdminActualityForm({Key? key}) : super(key: key);
@@ -8,7 +17,8 @@ class AdminActualityForm extends StatefulWidget {
 }
 
 class _AdminActualityFormState extends State<AdminActualityForm> {
-  GlobalKey _formKey = GlobalKey<FormState>();
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  Map<String, dynamic> _formData = {};
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +43,13 @@ class _AdminActualityFormState extends State<AdminActualityForm> {
                     filled: true,
                     fillColor: Theme.of(context).colorScheme.onBackground,
                   ),
+                  validator: (val) {
+                    if (val == null || val.isEmpty) {
+                      return 'entrez une valeur';
+                    }
+                    _formData['title'] = val;
+                    return null;
+                  },
                 ),
                 SizedBox(
                   height: 20,
@@ -46,6 +63,13 @@ class _AdminActualityFormState extends State<AdminActualityForm> {
                     filled: true,
                     fillColor: Theme.of(context).colorScheme.onBackground,
                   ),
+                  validator: (val) {
+                    if (val == null || val.isEmpty) {
+                      return 'entrez une valeur';
+                    }
+                    _formData['name_publisher'] = val;
+                    return null;
+                  },
                 ),
                 SizedBox(
                   height: 20,
@@ -59,6 +83,13 @@ class _AdminActualityFormState extends State<AdminActualityForm> {
                     filled: true,
                     fillColor: Theme.of(context).colorScheme.onBackground,
                   ),
+                  validator: (val) {
+                    if (val == null || val.isEmpty) {
+                      return 'entrez une valeur';
+                    }
+                    _formData['type_actuality'] = val;
+                    return null;
+                  },
                 ),
                 SizedBox(
                   height: 30,
@@ -68,13 +99,20 @@ class _AdminActualityFormState extends State<AdminActualityForm> {
                   minLines: 10,
                   cursorColor: Colors.black,
                   keyboardType: TextInputType.multiline,
-                  textInputAction: TextInputAction.newline,
+                  textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
                     fillColor: Theme.of(context).colorScheme.onBackground,
                     iconColor: Colors.black,
                     hintText: "Text de l'actualité",
                     filled: true,
                   ),
+                  validator: (val) {
+                    if (val == null || val.isEmpty) {
+                      return 'entrez une valeur';
+                    }
+                    _formData['text_page'] = val;
+                    return null;
+                  },
                 ),
               ],
             ),
@@ -94,7 +132,52 @@ class _AdminActualityFormState extends State<AdminActualityForm> {
               ),
             ),
           ),
-          onPressed: () {},
+          onPressed: () {
+            _formData['date_publication'] = DateTime.now().toString();
+            inspect(_formData);
+            if (_formKey.currentState!.validate()) {
+              context.read<ActualityBloc>().create(body: _formData);
+
+              showDialog(
+                context: context,
+                barrierDismissible: false,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: const Text("Reponse"),
+                    content: SizedBox(
+                        height: 50,
+                        child: BlocBuilder<ActualityBloc, StateApp>(
+                          builder: (context, state) {
+                            if (state is ReadyStateOne<ResponseModel>) {
+                              return Center(
+                                child: Text(state.data.message),
+                              );
+                            }
+                            return const Center(
+                              child: CupertinoActivityIndicator(),
+                            );
+                          },
+                        )),
+                    actions: [
+                      TextButton(
+                        child: const Text(
+                          "Fermer",
+                          style: TextStyle(color: Colors.red),
+                        ),
+                        onPressed: () {
+                          ActualityProvider().client.close();
+                          context.read<ActualityBloc>().getActualities();
+                          int _count = 0;
+
+                          Navigator.popUntil(context, (route) => _count++ >= 2);
+                        },
+                      ),
+                    ],
+                  );
+                },
+              );
+            }
+          },
         ),
       ),
     );

@@ -1,4 +1,13 @@
+import 'dart:developer';
+
+import 'package:allakroapp/bloc/health_center_bloc.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../bloc/states.dart';
+import '../../../models/response_model.dart';
+import '../../../providers/actuality_provider.dart';
 
 class AdminHealthCenterForm extends StatefulWidget {
   const AdminHealthCenterForm({Key? key}) : super(key: key);
@@ -8,7 +17,8 @@ class AdminHealthCenterForm extends StatefulWidget {
 }
 
 class _AdminHealthCenterFormState extends State<AdminHealthCenterForm> {
-  GlobalKey _formKey = GlobalKey<FormState>();
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  Map<String, dynamic> _formData = {};
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +43,13 @@ class _AdminHealthCenterFormState extends State<AdminHealthCenterForm> {
                     filled: true,
                     fillColor: Theme.of(context).colorScheme.onBackground,
                   ),
+                  validator: (val) {
+                    if (val == null || val.isEmpty) {
+                      return 'entrez une valeur';
+                    }
+                    _formData['name'] = val;
+                    return null;
+                  },
                 ),
                 SizedBox(
                   height: 20,
@@ -46,6 +63,13 @@ class _AdminHealthCenterFormState extends State<AdminHealthCenterForm> {
                     filled: true,
                     fillColor: Theme.of(context).colorScheme.onBackground,
                   ),
+                  validator: (val) {
+                    if (val == null || val.isEmpty) {
+                      return 'entrez une valeur';
+                    }
+                    _formData['status'] = val;
+                    return null;
+                  },
                 ),
                 SizedBox(
                   height: 20,
@@ -59,6 +83,13 @@ class _AdminHealthCenterFormState extends State<AdminHealthCenterForm> {
                     filled: true,
                     fillColor: Theme.of(context).colorScheme.onBackground,
                   ),
+                  validator: (val) {
+                    if (val == null || val.isEmpty) {
+                      return 'entrez une valeur';
+                    }
+                    _formData['garde'] = val;
+                    return null;
+                  },
                 ),
                 SizedBox(
                   height: 30,
@@ -72,6 +103,13 @@ class _AdminHealthCenterFormState extends State<AdminHealthCenterForm> {
                     filled: true,
                     fillColor: Theme.of(context).colorScheme.onBackground,
                   ),
+                  validator: (val) {
+                    if (val == null || val.isEmpty) {
+                      return 'entrez une valeur';
+                    }
+                    _formData['longitude'] = val;
+                    return null;
+                  },
                 ),
                 SizedBox(
                   height: 20,
@@ -85,6 +123,13 @@ class _AdminHealthCenterFormState extends State<AdminHealthCenterForm> {
                     filled: true,
                     fillColor: Theme.of(context).colorScheme.onBackground,
                   ),
+                  validator: (val) {
+                    if (val == null || val.isEmpty) {
+                      return 'entrez une valeur';
+                    }
+                    _formData['latitude'] = val;
+                    return null;
+                  },
                 ),
                 SizedBox(
                   height: 20,
@@ -101,6 +146,13 @@ class _AdminHealthCenterFormState extends State<AdminHealthCenterForm> {
                     hintText: "description",
                     filled: true,
                   ),
+                  validator: (val) {
+                    if (val == null || val.isEmpty) {
+                      return 'entrez une valeur';
+                    }
+                    _formData['description'] = val;
+                    return null;
+                  },
                 ),
               ],
             ),
@@ -120,7 +172,51 @@ class _AdminHealthCenterFormState extends State<AdminHealthCenterForm> {
               ),
             ),
           ),
-          onPressed: () {},
+          onPressed: () {
+            inspect(_formData);
+            if (_formKey.currentState!.validate()) {
+              context.read<HealthCenterBloc>().create(body: _formData);
+
+              showDialog(
+                context: context,
+                barrierDismissible: false,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: const Text("Reponse"),
+                    content: SizedBox(
+                        height: 50,
+                        child: BlocBuilder<HealthCenterBloc, StateApp>(
+                          builder: (context, state) {
+                            if (state is ReadyStateOne<ResponseModel>) {
+                              return Center(
+                                child: Text(state.data.message),
+                              );
+                            }
+                            return const Center(
+                              child: CupertinoActivityIndicator(),
+                            );
+                          },
+                        )),
+                    actions: [
+                      TextButton(
+                        child: const Text(
+                          "Fermer",
+                          style: TextStyle(color: Colors.red),
+                        ),
+                        onPressed: () {
+                          ActualityProvider().client.close();
+                          context.read<HealthCenterBloc>().getHealthCenter();
+                          int _count = 0;
+
+                          Navigator.popUntil(context, (route) => _count++ >= 2);
+                        },
+                      ),
+                    ],
+                  );
+                },
+              );
+            }
+          },
         ),
       ),
     );
